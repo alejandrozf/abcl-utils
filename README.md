@@ -16,7 +16,7 @@ CL-USER> (ql:quickload :abcl-utils)
 CL-USER> (in-package :abcl-utils)
 
 ABCL-UTILS> (defmacro print-var (var)
-              `(format t "~% ~a = ~a" ',var ,var))
+              `(format t "~% ~a = ~s" ',var ,var))
 
 PRINT-VAR
 
