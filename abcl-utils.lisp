@@ -5,14 +5,17 @@
 (defun bytes->unicode-java-string (byte-list encoding)
   "Converts a list of bytes in to a Lisp Unicode string according
   to the encoding selected"
-  ;; (bytes->unicode-java-string '(#xf0 #x9f #x91 #x8c) "UTF_8") --> #<java.lang.String 👌 {4477DBA0}>
-  (java:jnew "java.lang.String" (java:jnew-array-from-list "byte" byte-list)
-        (java:jfield "java.nio.charset.StandardCharsets" encoding)))
+  ;; (bytes->unicode-java-string '(#xf0 #x9f #x91 #x8c) "UTF8") --> #<java.lang.String 👌 {4477DBA0}>
+  (let* ((for-name-method (java:jmethod  "java.nio.charset.Charset"
+                                          "forName" "java.lang.String"))
+         (charset (java:jstatic for-name-method "java.nio.charset.Charset" encoding))
+         (jarray (java:jnew-array-from-list "byte" byte-list)))
+    (java:jnew "java.lang.String" jarray charset)))
 
 (defun bytes->unicode-lisp-string (byte-list encoding)
   "Converts a list of bytes in to a Lisp Unicode string according
   to the encoding selected"
-  ;; (bytes->unicode-lisp-string '(#xf0 #x9f #x91 #x8c) "UTF_8") --> "👌"
+  ;; (bytes->unicode-lisp-string '(#xf0 #x9f #x91 #x8c) "UTF8") --> "👌"
   (let ((method (java:jmethod "java.lang.String" "toString")))
     (java:jcall method (bytes->unicode-java-string byte-list encoding))))
 
