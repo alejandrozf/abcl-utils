@@ -16,33 +16,34 @@ CL-USER> (in-package :abcl-utils)
 
 ABCL-UTILS> (defmacro print-var (var)
               `(format t "~% ~a = ~a" ',var ,var))
+
 PRINT-VAR
 
 ABCL-UTILS> (let* ((utf8-bytes '(#xf0 #x9f #x91 #x8c))
-       (java-str-utf8 (bytes->unicode-java-string utf8-bytes "UTF8"))
-       (lisp-str-utf8 (bytes->unicode-lisp-string utf8-bytes "UTF8"))
-       (utf8-bytes-from-str (lisp-string->lisp-bytes lisp-str-utf8 "UTF8"))
+                   (java-str-utf8 (bytes->unicode-java-string utf8-bytes "UTF8"))
+                   (lisp-str-utf8 (bytes->unicode-lisp-string utf8-bytes "UTF8"))
+                   (utf8-bytes-from-str (lisp-string->lisp-bytes lisp-str-utf8 "UTF8"))
 
-       (utf16-bytes (lisp-string->lisp-bytes lisp-str-utf8 "UTF16"))
-       (utf16-java-str (bytes->unicode-java-string utf16-bytes "UTF16"))
-       (utf16-lisp-str (bytes->unicode-lisp-string utf16-bytes "UTF16"))
+                   (utf16-bytes (lisp-string->lisp-bytes lisp-str-utf8 "UTF16"))
+                   (utf16-java-str (bytes->unicode-java-string utf16-bytes "UTF16"))
+                   (utf16-lisp-str (bytes->unicode-lisp-string utf16-bytes "UTF16"))
 
-       (utf32-bytes (lisp-string->lisp-bytes lisp-str-utf8 "UTF32"))
-       (utf32-java-str (bytes->unicode-java-string utf32-bytes "UTF32"))
-       (utf32-lisp-str (bytes->unicode-lisp-string utf32-bytes "UTF32")))
+                   (utf32-bytes (lisp-string->lisp-bytes lisp-str-utf8 "UTF32"))
+                   (utf32-java-str (bytes->unicode-java-string utf32-bytes "UTF32"))
+                   (utf32-lisp-str (bytes->unicode-lisp-string utf32-bytes "UTF32")))
 
-  (print-var utf8-bytes)
-  (print-var java-str-utf8)
-  (print-var lisp-str-utf8)
-  (print-var utf8-bytes-from-str)
+              (print-var utf8-bytes)
+              (print-var java-str-utf8)
+              (print-var lisp-str-utf8)
+              (print-var utf8-bytes-from-str)
 
-  (print-var utf16-bytes)
-  (print-var utf16-java-str)
-  (print-var utf16-lisp-str)
+              (print-var utf16-bytes)
+              (print-var utf16-java-str)
+              (print-var utf16-lisp-str)
 
-  (print-var utf32-bytes)
-  (print-var utf32-java-str)
-  (print-var utf32-lisp-str))
+              (print-var utf32-bytes)
+              (print-var utf32-java-str)
+              (print-var utf32-lisp-str))
 
 UTF8-BYTES = (240 159 145 140)
 
