@@ -2,4 +2,9 @@
 
 (defpackage #:abcl-utils
   (:use #:cl)
-  (:export #:bytes->utf-8 #:print-bytes-utf-8-console #:debug))
+  (:export
+   #:bytes->unicode-java-string
+   #:bytes->unicode-lisp-string
+   #:lisp-string->java-bytes
+   #:lisp-string->lisp-bytes
+   #:debug))
