@@ -14,39 +14,60 @@ CL-USER> (ql:quickload :abcl-utils)
 
 CL-USER> (in-package :abcl-utils)
 
-ABCL-UTILS> (bytes->unicode-java-string '(#xf0 #x9f #x91 #x8c) "UTF8")
+ABCL-UTILS> (defmacro print-var (var)
+              `(format t "~% ~a = ~a" ',var ,var))
+PRINT-VAR
 
-#<java.lang.String 👌 {7C1607EB}>
+ABCL-UTILS> (let* ((utf8-bytes '(#xf0 #x9f #x91 #x8c))
+       (java-str-utf8 (bytes->unicode-java-string utf8-bytes "UTF8"))
+       (lisp-str-utf8 (bytes->unicode-lisp-string utf8-bytes "UTF8"))
+       (utf8-bytes-from-str (lisp-string->lisp-bytes lisp-str-utf8 "UTF8"))
 
-ABCL-UTILS> (bytes->unicode-lisp-string '(#xf0 #x9f #x91 #x8c) "UTF8")
+       (utf16-bytes (lisp-string->lisp-bytes lisp-str-utf8 "UTF16"))
+       (utf16-java-str (bytes->unicode-java-string utf16-bytes "UTF16"))
+       (utf16-lisp-str (bytes->unicode-lisp-string utf16-bytes "UTF16"))
 
-"👌"
+       (utf32-bytes (lisp-string->lisp-bytes lisp-str-utf8 "UTF32"))
+       (utf32-java-str (bytes->unicode-java-string utf32-bytes "UTF32"))
+       (utf32-lisp-str (bytes->unicode-lisp-string utf32-bytes "UTF32")))
 
-ABCL-UTILS> (lisp-string->java-bytes "👌dfsfd" "UTF32")
+  (print-var utf8-bytes)
+  (print-var java-str-utf8)
+  (print-var lisp-str-utf8)
+  (print-var utf8-bytes-from-str)
 
-#<jarray [B@30006baf {4635F69A}>
+  (print-var utf16-bytes)
+  (print-var utf16-java-str)
+  (print-var utf16-lisp-str)
 
-ABCL-UTILS> (lisp-string->lisp-bytes "👌" "UTF16")
+  (print-var utf32-bytes)
+  (print-var utf32-java-str)
+  (print-var utf32-lisp-str))
 
-(254 255 216 61 220 76)
+UTF8-BYTES = (240 159 145 140)
 
-ABCL-UTILS> (bytes->unicode-java-string * "UTF16")
+JAVA-STR-UTF8 = #<java.lang.String 👌 {2274B954}>
 
-#<java.lang.String 👌 {3666B0AA}>
+LISP-STR-UTF8 = 👌
 
-ABCL-UTILS> (bytes->unicode-lisp-string ** "UTF16")
+UTF8-BYTES-FROM-STR = (240 159 145 140)
 
-"👌"
+UTF16-BYTES = (254 255 216 61 220 76)
 
-ABCL-UTILS> (lisp-string->lisp-bytes "👌dfsfd" "UTF32")
+UTF16-JAVA-STR = #<java.lang.String 👌 {70CE8902}>
 
-(0 1 244 76 0 0 0 100 0 0 0 102 0 0 0 115 0 0 0 102 0 0 0 100)
+UTF16-LISP-STR = 👌
 
-ABCL-UTILS> (bytes->unicode-lisp-string * "UTF32")
+UTF32-BYTES = (0 1 244 76)
 
-"👌dfsfd"
+UTF32-JAVA-STR = #<java.lang.String 👌 {A69F6B0}>
+
+UTF32-LISP-STR = 👌
+
+NIL
 
 ABCL-UTILS>
+
 
 There is also abcl-utils:debug which can help to inspect variables contents in Slime/Sly
 
