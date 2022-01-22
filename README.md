@@ -10,6 +10,7 @@ Quickstart
 
 Clone this repository to your Quicklisp local-projects folder:
 
+```
 CL-USER> (ql:quickload :abcl-utils)
 
 CL-USER> (in-package :abcl-utils)
@@ -68,7 +69,7 @@ UTF32-LISP-STR = 👌
 NIL
 
 ABCL-UTILS>
-
+```
 
 There is also abcl-utils:debug which can help to inspect variables contents in Slime/Sly
 
