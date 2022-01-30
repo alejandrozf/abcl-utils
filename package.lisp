@@ -7,4 +7,6 @@
    #:bytes->unicode-lisp-string
    #:lisp-string->java-bytes
    #:lisp-string->lisp-bytes
+   #:codepoint->unicode-lisp-string
+   #:codepoint->name
    #:debug))

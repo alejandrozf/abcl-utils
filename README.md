@@ -68,6 +68,11 @@ UTF32-LISP-STR = 👌
 
 NIL
 
+ABCL-UTILS> (codepoint->unicode-lisp-string #xffaf)
+"ﾯ"
+ABCL-UTILS> (codepoint->name #xffaf)
+"HALFWIDTH HANGUL LETTER RIEUL-PHIEUPH"
+
 ABCL-UTILS>
 ```
 

@@ -33,6 +33,15 @@
     (dotimes (i (java:jarray-length jarray) (nreverse res))
       (push (logand (java:jarray-ref jarray i) #xff) res))))
 
+(defun codepoint->unicode-lisp-string (codepoint)
+  "Converts from a codepoint "
+  (java:jstatic (java:jmethod "java.lang.Character" "toString" "int")
+                "java.lang.Character" codepoint))
+
+(defun codepoint->name (codepoint)
+  (java:jstatic (java:jmethod "java.lang.Character" "getName" "int")
+                "java.lang.Character" codepoint))
+
 (defun debug (&rest args)
   "Helps to show variables inside debugger"
   ;; (debug var1 var2 ...)
