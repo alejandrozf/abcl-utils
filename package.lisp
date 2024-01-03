@@ -9,4 +9,5 @@
    #:lisp-string->lisp-bytes
    #:codepoint->unicode-lisp-string
    #:codepoint->name
+   #:name->codepoint
    #:debug))

@@ -42,6 +42,9 @@
   (java:jstatic (java:jmethod "java.lang.Character" "getName" "int")
                 "java.lang.Character" codepoint))
 
+(defun name->codepoint (name)
+  (java:jstatic "codePointOf" "java.lang.Character" name))
+
 (defun debug (&rest args)
   "Helps to show variables inside debugger"
   ;; (debug var1 var2 ...)

@@ -73,6 +73,8 @@ ABCL-UTILS> (codepoint->unicode-lisp-string #xffaf)
 ABCL-UTILS> (codepoint->name #xffaf)
 "HALFWIDTH HANGUL LETTER RIEUL-PHIEUPH"
 
+ABCL-UTILS> (abcl-utils:name->codepoint "BOX DRAWINGS LIGHT HORIZONTAL")
+9472
 ABCL-UTILS>
 ```
 
