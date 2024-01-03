@@ -75,6 +75,14 @@ ABCL-UTILS> (codepoint->name #xffaf)
 
 ABCL-UTILS> (abcl-utils:name->codepoint "BOX DRAWINGS LIGHT HORIZONTAL")
 9472
+ABCL-UTILS> (defun unicode-converter (stream char)
+              (declare (ignore char))
+              (code-char (name->codepoint (symbol-name (read stream t nil t)))))
+UNICODE-CONVERTER
+ABCL-UTILS> (set-macro-character #\? #'unicode-converter)
+T
+ABCL-UTILS> ?:|BOX DRAWINGS LIGHT HORIZONTAL|
+#\─
 ABCL-UTILS>
 ```
 
