@@ -51,3 +51,15 @@
   ;; In Sly this show the vars
   (declare (ignore args))
   (break))
+
+
+(defmacro with-fixable-retry (&body body)
+  "Adds a restart that allows to eval an expression before retry"
+  `(loop
+     (restart-case (return (progn ,@body))
+       (eval-and-retry (value)
+         :report "Eval an expresion and try again"
+         :interactive (lambda ()
+                        (format t "Enter a form to eval: ")
+                        (finish-output)
+                        (multiple-value-list (eval (read))))))))
