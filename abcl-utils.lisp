@@ -62,4 +62,5 @@
          :interactive (lambda ()
                         (format t "Enter a form to eval: ")
                         (finish-output)
-                        (multiple-value-list (eval (read))))))))
+                        (multiple-value-list (eval (read))))
+         value))))
