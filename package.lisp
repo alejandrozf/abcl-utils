@@ -10,4 +10,5 @@
    #:codepoint->unicode-lisp-string
    #:codepoint->name
    #:name->codepoint
-   #:debug))
+   #:debug
+   #:with-fixable-retry))
